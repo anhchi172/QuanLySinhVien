@@ -40,7 +40,7 @@ public class StudentDAO {
 
         FileWriter writer = new FileWriter(fileToBeModified);
         writer.write(newContent);
-        System.out.println("Edit thanh cong ***");
+        //System.out.println("Edit thanh cong ***");
         reader.close();
         writer.close();
     }
@@ -48,7 +48,7 @@ public class StudentDAO {
     public String fileToString (String filePath) throws Exception{
 
         String input = null;
-        Scanner sc = new Scanner(new File("D://Documents//Student.txt"));
+        Scanner sc = new Scanner(new File("D:Student.txt"));
         StringBuffer sb = new StringBuffer();
         while (sc.hasNextLine()) {
             input = sc.nextLine();
@@ -57,14 +57,15 @@ public class StudentDAO {
         return sb.toString();
     }
     public void deleteFromFile(String s){
-        try{
-        String filePath = "D://Documents//Student.txt";
-        String result = fileToString(filePath);
-        result = result.replaceAll(s,"" );
-        PrintWriter writer = new PrintWriter(new File(filePath));
-        writer.append(result);
-        writer.flush();
-        System.out.println("Delete student successful");}
+        try {
+            String filePath = "D://Student.txt";
+            String result = fileToString(filePath);
+            result = result.replaceAll(s, "");
+            PrintWriter writer = new PrintWriter(new File(filePath));
+            writer.append(result);
+            writer.flush();
+            //System.out.println("Delete student successful");
+        }
         catch (Exception e){
             System.out.println("Exception occurred: ");
             e.printStackTrace();

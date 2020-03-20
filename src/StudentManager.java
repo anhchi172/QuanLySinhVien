@@ -4,10 +4,9 @@ import java.util.*;
 public class StudentManager extends StudentDAO implements IStudentManager, Comparable<Student>, Comparator<Student> {
     private ArrayList<Student> al;
 
-    public StudentManager(){
+    public StudentManager() {
         al = new ArrayList<Student>();
     }
-
 
 
     public void addStudent(Student s) {
@@ -20,10 +19,10 @@ public class StudentManager extends StudentDAO implements IStudentManager, Compa
     public void editStudent(int id, Student n) throws IOException {
         //Scanner scan = new Scanner(System.in);
         boolean found = false;
-       String old;
+        String old;
 
-      for (Student s: al){
-            if (s.getId() == id){
+        for (Student s : al) {
+            if (s.getId() == id) {
                 old = s.toString();
                 s = n;
                 String toReplace = n.toString();
@@ -31,7 +30,7 @@ public class StudentManager extends StudentDAO implements IStudentManager, Compa
                 System.out.println("Da update thong tin hoc sinh voi ma id " + id);
                 found = true;
             }
-            if (!found){
+            if (!found) {
                 System.out.println("Loi ko tim thay hoc sinh voi ma id " + id);
             }
         }
@@ -52,21 +51,25 @@ public class StudentManager extends StudentDAO implements IStudentManager, Compa
     }
 
 
-
-
     public void deleteStudent(int id) throws Exception {
-        boolean removed = false;
-        for (Student s: al){
-            if (s.getId() == id){
-                al.remove(s);
-                deleteFromFile(s.toString());
-                System.out.println("Da xoa hoc sinh voi ma id " + id);
-                removed = true;
+        //boolean removed = false;
+        try {
+            while (al.size() > 0) {
+                for (Student s : al) {
+                    if (s.getId() == id) {
+
+                        deleteFromFile(s.toString());
+                        System.out.println("Da xoa hoc sinh voi ma id " + id);
+                        al.remove(s);
+                        //  removed = true;
+                    }
+                }
             }
-            if (!removed){
-                System.out.println("Loi ko tim thay hoc sinh voi ma id " + id);
-            }
+        } catch (Exception e) {
+            System.out.println("Loi ko tim thay hoc sinh voi ma id " + id);
+            e.printStackTrace();
         }
+    }
 
         /*ArrayList<Student> toRemove = new ArrayList<Student>();
        al.stream().filter(Student -> Student.getId() == id).forEach(Student -> toRemove.add(Student));
@@ -78,7 +81,7 @@ public class StudentManager extends StudentDAO implements IStudentManager, Compa
        else{
            System.out.println("Ko tim thay hoc sinh voi id "+ id);
        }*/
-    }
+
 
 
    /* static class Sortbygpa implements Comparator<Student>{
@@ -87,9 +90,9 @@ public class StudentManager extends StudentDAO implements IStudentManager, Compa
         }
     }*/
 
-   public int compareTo(Student b){
-            return 0;
-        }
+    public int compareTo(Student b) {
+        return 0;
+    }
 
 
     public int compare(Student a, Student b) {
@@ -99,25 +102,35 @@ public class StudentManager extends StudentDAO implements IStudentManager, Compa
 
 
     public void sortStudent(String choice) throws IOException {
-       try {
-           sortFile(choice);
-       }
-       catch (Exception e){
-           System.out.println("Exception occurred: ");
-           e.printStackTrace();
-       }
+        try {
+            sortFile(choice);
+        } catch (Exception e) {
+            System.out.println("Exception occurred: ");
+            e.printStackTrace();
+        }
 
     }
+
     // Error: type void is not allowed here
-    public void showStudent(){
-       for(Student s: al){
-           System.out.println(s.toString());
-       }
+    public void showStudent() {
+        for (Student s : al) {
+            System.out.println(s.toString());
+        }
         //al.stream().forEach(System.out.println(toString()));
 
     }
 
-    public Optional<Student> findStudentById(int id){
+    public Student findStudentById(int id) {
+        for (Student s : al) {
+            if (s.getId() == id)
+                return s;
+        }
+        System.out.println("Cannot find Student with id " + id);
+        return null;
+    }
+
+
+    /*public Optional<Student> findStudentById(int id){
         Optional<Student> n = al.stream().filter(Student -> Student.getId() == id).findFirst();
         if(n.getClass().equals("Student"))
             return n;
@@ -125,7 +138,7 @@ public class StudentManager extends StudentDAO implements IStudentManager, Compa
             System.out.println("Cannot find Student with id "+ id );
             return null;
         }
-    }
+    }*/
 
     @Override
     public void exit() {

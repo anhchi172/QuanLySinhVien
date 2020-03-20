@@ -19,15 +19,17 @@ public class StudentTester {
                 Student n = nhap();
                 s.addStudent(n);
             } else if (act == 2) {
-                System.out.println("Nhap id: ");
+                System.out.print("Nhap id: ");
                 int id = checkInput(1, Integer.MAX_VALUE);
-                Optional<Student> old = s.findStudentById(id);
+                Student old = s.findStudentById(id);
+
+                System.out.println("Nhap lai thong tin can thay doi: ");
                 Student n = nhap();
 
                 s.editStudent(id, n);
 
             } else if (act == 3) {
-                System.out.println("Nhap id: ");
+                System.out.print("Nhap id: ");
                 int id = checkInput(1, Integer.MAX_VALUE);
                 s.deleteStudent(id);
             }
