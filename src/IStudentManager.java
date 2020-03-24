@@ -4,12 +4,13 @@ import java.io.IOException;
 public interface IStudentManager {
 
 
-    public void addStudent(Student s);
-    public void editStudent(int id, Student n) throws IOException;
-    public void deleteStudent(int id) throws Exception;
-    public void sortStudent(String choice) throws IOException;
-    public void showStudent();
-    public void exit();
-
+    void addStudent();
+    void editStudent(int id);
+    void deleteStudent(int id);
+    void sortStudentByName();
+    void sortStudentByGpa();
+    void showStudent();
+    void exit();
+    int inputId();
 
 }
