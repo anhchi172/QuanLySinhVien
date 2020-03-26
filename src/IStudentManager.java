@@ -10,7 +10,6 @@ public interface IStudentManager {
     void sortStudentByName();
     void sortStudentByGpa();
     void showStudent();
-    void exit();
     int inputId();
 
 }

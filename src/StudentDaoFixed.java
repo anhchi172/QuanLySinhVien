@@ -12,8 +12,8 @@ public void write(List<StudentFix> s){
         if (!file.exists()){
             file.createNewFile();
         }
-        fos = new FileOutputStream();
-        oos = new ObjectOutputStream();
+        fos = new FileOutputStream(file);
+        oos = new ObjectOutputStream(fos);
         oos.writeObject(s);
     } catch(IOException e){
         e.printStackTrace();

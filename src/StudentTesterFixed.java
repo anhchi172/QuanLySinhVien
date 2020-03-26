@@ -30,6 +30,10 @@ public class StudentTesterFixed {
                     break;
                 case "5":
                     studentManager.sortStudentByName();
+                    break;
+                case "6":
+                    studentManager.showStudent();
+                    break;
                 case "0":
                     System.out.println("Exit");
                     exit = true;
@@ -53,8 +57,8 @@ public class StudentTesterFixed {
         System.out.println("1. Add student");
         System.out.println("2. Edit student by id");
         System.out.println("3. Delete student by id");
-        System.out.println("Sort student by gpa");
-        System.out.println("Sort student by name");
+        System.out.println("4.Sort student by gpa");
+        System.out.println("5.Sort student by name");
         System.out.println("6. SHow student");
         System.out.println("0. Exit");
 

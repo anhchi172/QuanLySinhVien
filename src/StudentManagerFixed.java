@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class StudentManagerFixed{
+public class StudentManagerFixed implements IStudentManager{
     private static Scanner scanner = new Scanner(System.in);
     private List<StudentFix> studentList;
     private StudentDaoFixed studentDaoFixed;
@@ -13,7 +13,7 @@ public class StudentManagerFixed{
         studentList = studentDaoFixed.read();
     }
 
-    public void add(){
+    public void addStudent(){
         int id = inputId();
         System.out.println("Student id: " + id);
         String name = inputName();
@@ -25,7 +25,7 @@ public class StudentManagerFixed{
         studentDaoFixed.write(studentList);
     }
 
-    public void edit(int id){
+    public void editStudent(int id){
         boolean existed = false;
         int size = studentList.size();
         for (int i = 0; i< size; i++){
@@ -49,7 +49,7 @@ public class StudentManagerFixed{
 
     }
 
-    public void delete(int id){
+    public void deleteStudent(int id){
         StudentFix student = null;
         int size = studentList.size();
         for (int i = 0; i< size; i++){
@@ -70,11 +70,11 @@ public class StudentManagerFixed{
         Collections.sort(studentList, new SortStudentbyName());
     }
 
-    public void sortStudentByGPA(){
+    public void sortStudentByGpa(){
         Collections.sort(studentList, new SortStudentbyGpa());
     }
 
-    public void show(){
+    public void showStudent(){
         for (StudentFix student : studentList){
             System.out.format("%5d | ", student.getId());
             System.out.format("%20s | ", student.getName());
